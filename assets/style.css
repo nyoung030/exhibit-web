@@ -1,0 +1,73 @@
+html, body { height: 100%; margin: 0; background:#000; }
+
+/* 배경 이미지를 화면에 꽉 채움 */
+.bg{
+  position: fixed;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* 오버레이(클릭 필요 없음) */
+.overlay{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* ====== 2페이지 박스 위치(타이트) ====== */
+.code-grid{
+  position: absolute;
+
+  /* 너가 올린 2페이지 스샷 기준으로 맞춘 값 */
+  left: 24.2%;
+  top: 44.1%;
+  width: 51.3%;
+  height: 24.0%;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2.3%;
+}
+
+/* 숫자/커서만 보이게 */
+.code-box{
+  position: relative;
+  display: grid;
+  place-items: end center;
+
+  padding-bottom: 12%;
+
+  color: rgba(255,255,255,0.95);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: clamp(44px, 4.2vw, 72px);
+  letter-spacing: 0.06em;
+}
+
+/* 커서 바 */
+.code-box::after{
+  content:"";
+  position:absolute;
+  left: 18%;
+  right: 18%;
+  bottom: 8%;
+  height: 2px;
+  background: rgba(255,255,255,0.75);
+  opacity: 0;
+}
+
+/* 현재 칸만 깜빡 */
+.code-box.cursor::after{
+  opacity: 1;
+  animation: blink 1s step-end infinite;
+}
+
+/* 4칸 다 차면 바 숨김 */
+.code-box.no-cursor::after{
+  display:none;
+}
+
+@keyframes blink{
+  50% { opacity: 0; }
+}
